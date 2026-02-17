@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Stationery Shop</title>
+    <link rel="stylesheet" href="style.css">
+   
+</head>
+<body>
+    
+    <header>
+        <img class="logo" src="https://img.lazcdn.com/collect/asc/sellerapp/300153192005/lsa-logo-702780575-D539DA9D-24D5-469C-A5BF-AA8C0ADB2497.png" alt="Shop Logo"/>
+        <h1>Vaishnavi's Stationery Shop</h1>
+    </header>
+
+    <div class="background">
+       <nav>
+            <a href="">Home</a>
+            <a href="products.html">Products</a>
+            <a href="category-section">Categories</a>
+            <a href="">Offers</a>
+            <a href="">About Us</a>
+            <a href="">Feedback</a>
+            <a href="">Contact Us</a>
+            <a href="">Blog</a>
+            <div class="cart">
+                <a href="cart.html">
+                    🛒 Cart <span class="cart-count">0</span>
+                </a>
+            </div>
+            <a href="signin.html">
+            <button type="button">Sign in</button>
+            </a>
+            <button onclick="logout()">Logout</button>
+        </nav>
+
+
+        <div class="Card1">
+            <h1>Welcome to Our Stationery Shop</h1>
+            <p>Your one-stop destination for colorful stationery</p>
+            <button class="Card1 button" type="button">Explore Stationery</button>
+        </div>
+
+    </div>
+    <section class="category-section">
+        <h2>Our Stationery Categories</h2>
+        <p>
+            Explore a wide range of stationery items designed for students,
+            professionals, and creative minds. From everyday essentials to
+            premium-quality supplies, we have everything you need in one place.
+        </p>
+    </section>
+
+
+    <section class="category-cards">
+
+        <a href="products.html?category=writing" class="category-card">
+            <img src="https://cdn-icons-png.flaticon.com/512/2991/2991148.png" alt="Writing Supplies">
+            <h3>Writing Supplies</h3>
+            <p>Pens, pencils, markers, highlighters and more for daily writing needs.</p>
+        </a>
+
+        <a href="products.html?category=paper" class="category-card">
+            <img src="https://cdn-icons-png.flaticon.com/512/3145/3145765.png" alt="Paper Products">
+            <h3>Paper Products</h3>
+            <p>Notebooks, diaries, sketchbooks, sticky notes and loose sheets.</p>
+        </a>
+
+        <a href="products.html?category=art" class="category-card">
+            <img src="https://cdn-icons-png.flaticon.com/512/2920/2920277.png" alt="Art and Craft">
+            <h3>Art & Craft</h3>
+            <p>Colors, brushes, craft paper, glue, scissors for creativity.</p>
+        </a>
+
+        <a href="products.html?category=office" class="category-card">
+            <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Office Essentials">
+            <h3>Office Essentials</h3>
+            <p>Files, folders, staplers, calculators and desk organizers.</p>
+        </a>
+
+    </section>
+
+
+
+        <footer>
+            <p>&copy; 2026 Vaishnavi's Stationery Shop | Contact: info@stationeryshop.com</p>
+        </footer>
+    
+         <script>
+            function logout() {
+            localStorage.removeItem("isLoggedIn");
+            alert("Logged out successfully");
+            window.location.href = "index.html";
+            }
+        </script>
+</body>
+</html>

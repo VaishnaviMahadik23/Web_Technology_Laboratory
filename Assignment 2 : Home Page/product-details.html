@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Details | Stationery Shop</title>
+    <link rel="stylesheet" href="product-details.css">
+</head>
+<body>
+
+<section class="product-details-container">
+
+    <!-- PRODUCT IMAGE -->
+    <div class="product-image">
+        <img id="productImg" src="" alt="Product">
+    </div>
+
+    <!-- PRODUCT INFO -->
+    <div class="product-info">
+        <h1 id="productName"></h1>
+        <p class="price">₹<span id="productPrice"></span></p>
+
+        <p class="description" id="productDesc"></p>
+
+        <!-- QUANTITY -->
+        <div class="quantity-box">
+            <label for="qty">Quantity:</label>
+            <input type="number" id="qty" value="1" min="1">
+        </div>
+
+        <!-- ACTIONS -->
+        <div class="actions">
+            <button class="add-cart" onclick="addToCart()">Add to Cart</button>
+            <button class="buy-now" onclick="buyNow()">Buy Now</button>
+        </div>
+
+        <!-- GO TO CART -->
+        <div class="go-cart-wrap">
+            <button class="go-cart" onclick="goToCart()" style="display:none;">
+                Go to Cart
+            </button>
+        </div>
+    </div>
+
+</section>
+
+<script>
+/* ---------- PRODUCT DATA ---------- */
+const products = {
+    1: {
+        name: "Ball Pen",
+        price: 20,
+        image: "https://m.media-amazon.com/images/I/91hJTzOqT2L._SL1500_.jpg",
+        description: "Smooth writing ball pen with long-lasting ink."
+    },
+    2: {
+        name: "Notebook",
+        price: 80,
+        image: "https://tse3.mm.bing.net/th/id/OIP.7EkLfB3umeSyeaLQLMPNUwHaE7?rs=1&pid=ImgDetMain&o=7&rm=3",
+        description: "High-quality notebook with premium pages."
+    },
+    3: {
+        name: "Color Set",
+        price: 150,
+        image: "https://m.media-amazon.com/images/I/81hXPzq+YOL._SX425_.jpg",
+        description: "Bright and vibrant color set."
+    },
+    4: {
+        name: "Sticky Notes",
+        price: 60,
+        image: "https://th.bing.com/th/id/R.c653b0aec605024e89b58c10c0365313?rik=ylCFRacPm1g9pA&riu=http%3a%2f%2fclipart-library.com%2fimages%2frTnrpyaAc.jpg&ehk=sJ%2f4GK3LWasUbY5sGwsjyUfRGj6k0TjopLPrIxUiwSQ%3d&risl=&pid=ImgRaw&r=0",
+        description: "Colorful sticky notes for reminders."
+    }
+};
+
+/* ---------- GET PRODUCT ---------- */
+const params = new URLSearchParams(window.location.search);
+const productId = params.get("id");
+const product = products[productId];
+
+if (!product) {
+    document.body.innerHTML =
+        "<h2 style='text-align:center;margin-top:50px'>Product not found</h2>";
+    throw new Error("Invalid product ID");
+}
+
+/* ---------- SET PRODUCT DATA ---------- */
+document.getElementById("productName").textContent = product.name;
+document.getElementById("productPrice").textContent = product.price;
+document.getElementById("productImg").src = product.image;
+document.getElementById("productDesc").textContent = product.description;
+
+/* ---------- SHOW GO TO CART IF CART EXISTS ---------- */
+const cartOnLoad = JSON.parse(localStorage.getItem("cart")) || [];
+if (cartOnLoad.length > 0) {
+    document.querySelector(".go-cart").style.display = "inline-block";
+}
+
+/* ---------- ADD TO CART ---------- */
+function addToCart() {
+    const qty = parseInt(document.getElementById("qty").value);
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    const existing = cart.find(item => item.id == productId);
+
+    if (existing) {
+        existing.quantity += qty;
+    } else {
+        cart.push({
+            id: productId,
+            name: product.name,
+            price: product.price,
+            image: product.image,
+            quantity: qty
+        });
+    }
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+    document.querySelector(".go-cart").style.display = "inline-block";
+
+    alert("Item added to cart");
+}
+
+/* ---------- BUY NOW ---------- */
+function buyNow() {
+    addToCart();
+    goToCart();
+}
+
+/* ---------- GO TO CART (LOGIN CHECK) ---------- */
+function goToCart() {
+    const isLoggedIn = localStorage.getItem("isLoggedIn");
+
+    if (!isLoggedIn) {
+        alert("Please login to continue");
+        window.location.href = "signin.html";
+        return;
+    }
+
+    window.location.href = "cart.html";
+}
+
+</script>
+
+</body>
+</html>
