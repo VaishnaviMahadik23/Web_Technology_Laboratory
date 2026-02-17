@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="form-container">
+    <h2>Registration Form</h2>
+
+    <form id="regForm" novalidate>
+
+        <label>Full Name</label>
+        <input type="text" id="name">
+        <small id="nameError"></small>
+
+        <label>Email</label>
+        <input type="text" id="email">
+        <small id="emailError"></small>
+
+        <label>Gender</label>
+        <div class="gender">
+            <input type="radio" name="gender" value="Male"> Male
+            <input type="radio" name="gender" value="Female"> Female
+            <input type="radio" name="gender" value="Other"> Other
+        </div>
+        <small id="genderError"></small>
+
+        <label>Date of Birth</label>
+        <input type="date" id="dob">
+        <small id="dobError"></small>
+
+        <label>Phone Number</label>
+        <input type="text" id="phone">
+        <small id="phoneError"></small>
+
+        <label>Address</label>
+        <textarea id="address"></textarea>
+        <small id="addressError"></small>
+
+        <label>Pin Code</label>
+        <input type="text" id="pincode">
+        <small id="pincodeError"></small>
+
+        <button type="submit">Register</button>
+
+    </form>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
